@@ -6,12 +6,17 @@
 % moznost dvousloupcovych stran
 \usepackage{multicol}
 % uprava rozmeru strany a okraju
-\usepackage[top=1.5cm, left=2cm, right=2cm, bottom=1cm]{geometry}
+\usepackage[top=1cm, left=1cm, right=1cm, bottom=1.5cm]{geometry}
 % moznost barevneho textu
 \usepackage{color}
+% generovani hypertextovych odkazu v obsahu
+\usepackage{hyperref}
+\usepackage{url}
+% vytvoreni vicesloupcoveho seznamu pisni
+\usepackage[toc]{multitoc}
 
 \definecolor{mygray}{gray}{0.6} % šedá barva pro dvojjazyčné písně
-\pagestyle{empty} % zrušení číslování
+\pagestyle{empty}  %zrušení číslování
 \def\everypar{\parindent=0cm} % zrušení odsazování odstavců
 
 \newcommand\chord[2][l]{ % akordy
@@ -20,6 +25,7 @@
 % nadpisy
 \newcommand{\song}[2]{%
 \section*{\Huge\expandafter\MakeUppercase\expandafter{#1}}
+\addcontentsline{toc}{section}{#1}
 \vspace{-1em}\emph{#2}\newline
 }
 
@@ -27,11 +33,20 @@
 \newcommand{\chorustext}[1]{\textregistered:\emph{#1}}
 \newcommand{\chorus}{\hspace{1em}\textregistered\hspace{1em}}
 
+% prejmonovani Obsahu na Seznam pisni
+\addto\captionsczech{ \renewcommand*\contentsname{Seznam písní}}
+
+
 \begin{document}
 
-\input{obsah}
+\tableofcontents
+
+\newpage
 
 \begin{LARGE}
+
+\pagestyle{plain}     % zapne obyčejné číslování
+\setcounter{page}{1}  % nastaví čítač stránek znovu od jedné
 
 \input{pisnicky/all_you_need_is_love}
 \input{pisnicky/amavi_te_puella}
@@ -138,6 +153,7 @@
 
 \input{pisnicky/zeny}
 \input{pisnicky/zily}
+
 
 \end{LARGE}
 
